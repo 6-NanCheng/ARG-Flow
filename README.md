@@ -6,7 +6,17 @@
 ---
 
 ## 项目结构
-project-root/ ├── data_for_figures.tar.gz # 压缩包，解压后含所有输入数据 ├── generate_main_figures.R # 主图生成脚本（Fig2–Fig5） ├── generate_supplementary_figures.R # 补充图生成脚本 ├── data_for_figures/ # 解压后数据目录 ├── figures/ # 输出图像（PNG/PDF） │ └── supplementary/ # 补充图输出 ├── scripts/ # 可选：其他辅助脚本 ├── report/ # HTML/Markdown 报告 ├── notebooks/ # Jupyter 笔记本（若有） ├── results/ # 中间文件和模型性能结果 └── README.md # 本说明文件
+```bash
+- data_for_figures/     # 存放用于生成图表的原始数据文件
+- report/               # HTML 格式的分析报告目录
+  - Main Results.html   # 主要结果报告，包含关键指标和可视化
+  - Supp Results.html   # 补充结果报告，包含附加分析和细节
+- results/              # 最终导出的图像文件目录
+- supp_results/         # 生成补充的结果
+- Main Results.ipynb    # 生成主结果的 Jupyter 笔记本
+- Supp Results.ipynb    # 生成补充结果的 Jupyter 笔记本
+- README.md             # 说明文档
+```
 
 
 ---
@@ -15,7 +25,7 @@ project-root/ ├── data_for_figures.tar.gz # 压缩包，解压后含所有
 在项目根目录运行以下命令解压数据：
 ```bash
 tar -xzf data_for_figures.tar.gz
-解压后会生成 data_for_figures/ 文件夹，包含运行脚本所需的所有文件。
+解压后会生成 data_for_figures/ 文件夹，包含运行脚本所需的所有数据。
 
 使用方法
 打开 R 或 RStudio，将工作目录切换到项目根目录。
