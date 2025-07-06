@@ -1,11 +1,15 @@
 # ARG-HGT 复现项目
 
 ## 项目简介
+
 本仓库用于复现 Lund et al. (2025) 论文 “Genetic compatibility and ecological connectivity drive the dissemination of antibiotic resistance genes” 中的关键结果，包括主图（Fig2–Fig5）和补充图。
 
----
+[全文链接](https://www.nature.com/articles/s41467-025-57825-3)
+
+
 
 ## 项目结构
+
 ```bash
 - data_for_figures/     # 存放用于生成图表的原始数据文件
 - report/               # HTML 格式的分析报告目录
@@ -19,81 +23,60 @@
 ```
 
 
----
 
-## 数据准备
-在项目根目录运行以下命令解压数据：
+
+## 数据与代码准备
+
+在以下地址下载并解压所需数据与代码
+
+[下载地址](https://zenodo.org/records/14901409)
+
+## 复现简要过程
+
+1、在 RStudio中下载复现所需包（所需包在每一段代码前都有标注，直接下载即可）比如：
+
 ```bash
-tar -xzf data_for_figures.tar.gz
-解压后会生成 data_for_figures/ 文件夹，包含运行脚本所需的所有数据。
+# Load packages
+library(caret)
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(data.table)
+library(randomForest)
+library(pROC)
+library(utils)
+library(patchwork)
+```
 
-使用方法
-打开 R 或 RStudio，将工作目录切换到项目根目录。
+则需要下载标注的所需包
 
-运行主图脚本生成主图：
+2、在vscode中运行各部分代码：
 
-r
-source("generate_main_figures.R")
-运行补充图脚本生成补充图：
+在Jupyter Notebook 文件（*.ipynb 格式）中运行R代码，在右上角选择内核“Jupyter Kernel”，找到自己的R内核就能加载运行所需包，接着一步一步运行即可。
 
-r
-source("generate_supplementary_figures.R")
-所有生成的 PNG/PDF 图像将保存在 figures/ 和 figures/supplementary/ 下，与论文图号对应。
+运行“Main Results.ipynb”的主结果在results文件夹下、运行“Supp Results.ipynb”的补充结果在supp_results文件夹下
 
-依赖环境
-R ≥ 4.2.0
+3、html文件的生成
 
-以下 R 包（建议一次性安装）：
+打开命令行工具（终端 / Anaconda Prompt / PowerShell）
 
-aplot (≥ 0.2.3)
+```bash
+# 输入命令（将路径替换为你自己的）
 
-caret (≥ 6.0-94)
+cd 路径/到/你的/项目文件夹
 
-corrplot (≥ 0.92)
+# 使用命令转换为 HTML 文件：
 
-data.table (≥ 1.15.4)
+jupyter nbconvert --to html "Main Results.ipynb"
+jupyter nbconvert --to html "Supp Results.ipynb"
 
-GGally (≥ 2.2.1)
+# 执行成功后，目录下会生成：
 
-igraph (≥ 2.0.3)
+Main Results.html
+Supp Results.html
 
-patchwork (≥ 1.2.0)
+```
 
-pdp (≥ 0.8.1)
-
-pROC (≥ 1.18.5)
-
-randomForest (≥ 4.7-11)
-
-readxl (≥ 1.4.3)
-
-rfPermute (≥ 2.5.2)
-
-rfUtilities (≥ 2.1-5)
-
-tidyverse (≥ 2.0.0)
-
-vegan (≥ 2.6-6.1)
-
-一键安装依赖
-在 R 控制台中执行：
-
-r
-install.packages(c(
-  "aplot","caret","corrplot","data.table","GGally","igraph",
-  "patchwork","pdp","pROC","randomForest","readxl",
-  "rfPermute","rfUtilities","tidyverse","vegan"
-))
-报告生成
-若需生成 HTML/Markdown 报告，可使用 quarto 或 RMarkdown：
-
-bash
-# 安装 Quarto CLI
-conda install -c conda-forge quarto
-# 渲染报告
-quarto render report/report.qmd --to html
-quarto render report/report.qmd --to gfm
-生成的报告文件将存放在 report/ 目录下。
 
 联系与反馈
-如有问题，请在本仓库 Issues 提问，或联系项目负责人 俊豪 (jh-reproduce@researchmail.edu.cn)。 祝复现顺利！
+如有问题，请在本仓库 Issues 提问，或联系项目负责人 Jun-Hao。 祝复现顺利！
